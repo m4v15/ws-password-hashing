@@ -13,10 +13,10 @@
     <h1>Sign up</h1>
     <form class="signup__form" method='post' action='/login' novalidate>
       <label for="email">Email:
-        <input id="email" type="email" required/>
+        <input id="email" type="email" name="email" required/>
       </label>
       <label for="password">Password:
-        <input id="password" type="password" required pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" />
+        <input id="password" type="password" name="password" required pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" />
       </label>
       <p class="error" aria-live="polite"></p>
       <button type="submit">Submit</button>

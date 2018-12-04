@@ -1,4 +1,7 @@
-const handlers = require('./handlers.js');
+const handlers = {
+  get: require('./handlers/get.js'),
+  post: require('./handlers/post.js')
+}
 
 const routes = {
   'GET': {

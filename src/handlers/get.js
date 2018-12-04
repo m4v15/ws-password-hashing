@@ -1,5 +1,9 @@
 const fs = require('fs');
 const path = require('path');
+const qs = require('querystring')
+const Store = require('data-store')
+const db = new Store('db', { cwd: './' });
+
 
 const extensionType = {
   'html': 'text/html',
@@ -9,7 +13,7 @@ const extensionType = {
 
 
 const general = (name) => (req, res) => {
-  let filePath = path.join(__dirname, '..', 'public', `${name}.html`);
+  let filePath = path.join(__dirname, '..', '..', 'public', `${name}.html`);
   fs.readFile(filePath, function (error, file) {
     if (error) {
       console.log(error);
@@ -31,7 +35,7 @@ const public = (req, res) => {
   //Handler Variables
   let url = req.url;
   let extension = url.split('.')[1];
-  let filePath = path.join(__dirname, '..', url);
+  let filePath = path.join(__dirname, '..', '..', url);
   fs.readFile(filePath, function (error, file) {
     if (error) {
       console.log(error);
@@ -50,23 +54,37 @@ const notFound = (req, res) => {
   res.end('page not found');
 }
 
-const registerPost = (req, res) => {
-  res.end('Registered')
+const bodyParser = (req, cb) => {
+  var body = '';
+  req.on('data', function (data) {
+    body += data.toString();
+  });
+  req.on('end', function () {
+    req.body = qs.parse(body)
+    cb(req)
+  });
 }
+
+const registerPost = (req, res) => {
+  bodyParser(req, (parsedRequest) => {
+    console.log(req.body)
+    res.writeHead(200, { 'Content-Type': 'text/html' });
+    res.end('post received');
+  })
+}
+
 const loginPost = (req, res) => {
-  res.end('Not logged In')
+  bodyParser(req, (parsedRequest) => {
+    console.log(req.body)
+    res.writeHead(200, { 'Content-Type': 'text/html' });
+    res.end('post received');
+  })
 }
 
 module.exports = {
-  get: {
-    home,
-    register,
-    login,
-    public,
-    notFound
-  },
-  post: {
-    login: loginPost,
-    register: registerPost
-  }
+  home,
+  register,
+  login,
+  public,
+  notFound
 }
