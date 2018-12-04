@@ -27,16 +27,26 @@ const getUserFromDatabase = (email, cb) => {
 
 const register = (req, res) => {
   bodyParser(req, (body) => {
+
+    // PART 1: Change the code below here!
+    // note that `body` here is just and object with the email and password
+
     addUserToDatabase(body.email, body.password, (err, result) => {
       if (err) res.end('Error registering')
       res.send('successfully registered!')
     })
+
   })
 }
 
 const login = (req, res) => {
   bodyParser(req, (body) => {
     getUserFromDatabase(body.email, (err, databasePassword) => {
+
+      // PART 2: Change the code below here
+      // note that `body` here is just and object with the email and password
+      // and databasePassword is the password as stored in the database
+
       if (err) res.end('Error logging in')
       else {
         if (body.password === databasePassword) {
@@ -46,6 +56,7 @@ const login = (req, res) => {
         }
       }
     })
+
   })
 }
 
