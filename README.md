@@ -4,7 +4,7 @@
 
 1. Clone this repo
 1. `npm install`
-1. `npm start`
+1. `npm run dev`
 1. Go to `http://localhost:4000/`
 
 ## Description
@@ -15,7 +15,9 @@ At the moment you can go to the registration, register, and then go to the log i
 
 ...
 
-Cool, hopefully that worked.
+Cool, hopefully that worked...
+
+Wait a second, I think I did something wrong... try to enter any password and user combination... **uh oh!** it logs you in whatever you type! :scream:
 
 Hey, now have a look at the code in your editor...
 
