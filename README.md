@@ -21,13 +21,31 @@ Wait a second, I think I did something wrong... try to enter any password and us
 
 Hey, now have a look at the code in your editor...
 
-If you look, the database of users in is in the `db.json` file.
+### Part 1
+
+Look at the stuff in the `login` post handler. We take the email and the password the user enters, then get the password that is in the database and then log the user in... This seems bad. **We should check that the password in the database is the same as the password the user enters**
+
+1. Change the code so that we only send a `success logged in!` message when the password the user enters is the same as password in the database. If they are different send back a fail message. Stuff happens on [these lines](https://github.com/m4v15/ws-password-hashing/blob/55c0e2fe229edb44a11078e0b007d199281dad2f/src/handlers/post.js#L16-L17)
+
+#### Finished?
+
+Cool, check it works by registering and enter the right password (you should see your log in message) and then enter the wrong password (you should see the fail message)
+
+### Part 2
+
+If you look, our "database" of users in is the `db.json` file in the root directory.
 
 However as you may have noticed, there is a bit of a problem... all the passwords are stored as plaintext! We should change this:
 
-1. Please change the `post` handler for `register` to hash the password _before_ we put it in our database
-1. Also change the `post` handler for `login` to _compare_ the inputted password with the hash to check the user typed the correct password...
+1. Please change the `post` handler for `register` to hash the password _before_ we put it in our database. The stuff happens in [these lines](https://github.com/m4v15/ws-password-hashing/blob/55c0e2fe229edb44a11078e0b007d199281dad2f/src/handlers/post.js#L29-L33)
+1. This will break our comparison in part one. Also change the `post` handler for `login` to compare the inputted password with the now hashed password in the database...
 
 #### _Hint_
 
 - Use `bcrypt`....
+
+#### Finished?
+
+Check it works by deleting the db.json file, then creating some users! It will create a new `db.json` file and hopefully all the passwords should be weird hashes.
+
+Then try to log in and see if it works!
