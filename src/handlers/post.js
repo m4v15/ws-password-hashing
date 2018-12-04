@@ -8,15 +8,12 @@ const login = (req, res) => {
   });
   req.on('end', () => {
     const { email, password } = qs.parse(body)
-    // PART 2: Change the code below here to check the password is correct
-    // If it is we should send 'Logged in'
-    // If not we should say 'Invalid Username/Password combination'
-
     queries.getUserFromDatabase(email, (err, databasePassword) => {
       if (err) {
         res.end('Error logging in')
         return
       }
+      // PART 1 - check the passwords match before sending in logged in message!
       res.end('Success Logging In!')
     })
   })
@@ -29,8 +26,9 @@ const register = (req, res) => {
   });
   req.on('end', () => {
     const { email, password } = qs.parse(body)
-    // PART 1: Change the code below here!
+    // PART 2: Change the code below here!
     // We should not be storing the password as plain text!
+    // We will also now need to change the log in code above (that you changed in part 1) so that it can compare a hashed password...
 
     queries.addUserToDatabase(email, password, (err, result) => {
       if (err) {
