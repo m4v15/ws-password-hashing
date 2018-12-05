@@ -54,33 +54,6 @@ const notFound = (req, res) => {
   res.end('page not found');
 }
 
-const bodyParser = (req, cb) => {
-  var body = '';
-  req.on('data', function (data) {
-    body += data.toString();
-  });
-  req.on('end', function () {
-    req.body = qs.parse(body)
-    cb(req)
-  });
-}
-
-const registerPost = (req, res) => {
-  bodyParser(req, (parsedRequest) => {
-    console.log(req.body)
-    res.writeHead(200, { 'Content-Type': 'text/html' });
-    res.end('post received');
-  })
-}
-
-const loginPost = (req, res) => {
-  bodyParser(req, (parsedRequest) => {
-    console.log(req.body)
-    res.writeHead(200, { 'Content-Type': 'text/html' });
-    res.end('post received');
-  })
-}
-
 module.exports = {
   home,
   register,
