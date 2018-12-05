@@ -8,7 +8,7 @@ const login = (req, res) => {
   });
   req.on('end', () => {
     const { email, password } = qs.parse(body)
-    queries.getUserFromDatabase(email, (err, databasePassword) => {
+    queries.getUserFromDatabase(email, (err, passwordInDatabase) => {
       if (err) {
         res.end('Error logging in')
         return
