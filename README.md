@@ -42,7 +42,7 @@ However as you may have noticed, there is a bit of a problem... all the password
 
 #### _Hint_
 
-- Use `bcrypt`....
+- [Use `bcryptjs`....](https://www.npmjs.com/package/bcryptjs)
 
 #### Finished?
 
