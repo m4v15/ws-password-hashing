@@ -1,5 +1,16 @@
 # ws-password-hashing
 
+## Learning outcomes
+Understand:
++ how bcrypt works
++ a way to set up register and log in on your server
+
+Be able to implement the following:
++ hash a password (using bcrypt.js)
++ compare it (using bcrypt.js) to the user input
+
+---
+
 ## Set Up
 
 1. Clone this repo
