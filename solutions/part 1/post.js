@@ -10,21 +10,24 @@ const login = (req, res) => {
     const { email, password } = qs.parse(body)
     queries.getUserFromDatabase(email, (err, databasePassword) => {
       if (err) {
+        res.statusCode = 500;
         res.end('Error logging in')
         return
       }
       // PART 1 - check the passwords match before sending in logged in message!
 
       if (!password) {
+        res.statusCode = 403;
         res.end('No details matching that user have been found')
         return
       }
 
       if (password !== databasePassword) {
+        res.statusCode = 403;
         res.end('Incorrect username + password combination')
         return
       }
-
+      res.statusCode = 200;
       res.end('Success Logging In!')
     })
   })
@@ -43,9 +46,11 @@ const register = (req, res) => {
 
     queries.addUserToDatabase(email, password, (err, result) => {
       if (err) {
+        res.statusCode = 500;
         res.end('Error registering')
         return
       }
+      res.statusCode = 200;
       res.end('successfully registered!')
     })
   });
