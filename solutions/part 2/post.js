@@ -1,4 +1,4 @@
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcryptjs')
 const qs = require('querystring')
 
 const queries = require('../database/queries.js')

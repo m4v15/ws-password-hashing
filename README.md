@@ -42,7 +42,7 @@ However as you may have noticed, there is another serious problem... all the pas
 
 #### _Hint_
 
-- Use `bcrypt`....
+- [Use `bcryptjs`....](https://www.npmjs.com/package/bcryptjs)
 
 #### Finished?
 
